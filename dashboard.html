@@ -29,7 +29,7 @@
     async function api(endpoint){
       const local=location.hostname==='localhost'||location.hostname==='127.0.0.1';
       const file=endpoint.split('?')[0];
-      const source=local?'/api/holyworld/'+endpoint:'data/'+file+'.json';
+      const source=local?'/api/holyworld/'+endpoint:'data/'+file+'.json?v='+Date.now();
       const r=await fetch(source);if(!r.ok)throw Error('API error');return r.json()
     }
     function makeStats(items){$('#stats').innerHTML=items.map(x=>stat(...x)).join('')}
