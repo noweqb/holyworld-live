@@ -40,6 +40,7 @@
     function healthView(data){const ok=data.status==='ok'||data.status==='healthy'||data.status;makeStats([['Сервис',ok?'Online':'Offline',ok?'accent':''],['Ответ','200','accent'],['Проверка','/v1/health',''],['Режим','Public API','']]);$('#content').innerHTML=`<article class="card" style="grid-column:1/-1"><div class="card-head"><h2>Проверка соединения</h2><button class="refresh" onclick="render()">Проверить снова</button></div><div class="event"><span class="event-icon" style="color:var(--lime)">✓</span><div class="event-main"><div class="event-title">HolyWorld REST API отвечает</div><div class="event-sub">Статус сервиса: ${esc(data.status||'online')}</div></div><span class="tag" style="color:var(--lime);border-color:rgba(216,255,98,.35)">ONLINE</span></div></article>`}
     async function render(){setIntro();loading($('#stats'));loading($('#content'));try{const data=await api(path==='coins'?'coins-trades?limit=20':path);if(path==='servers')serverView(data);else if(path==='events')eventView(data);else if(path==='votings')votingView(data);else if(path==='coins')coinsView(data);else healthView(data);$('#updated').textContent=new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}catch(e){$('#stats').innerHTML='';$('#content').innerHTML='<article class="card" style="grid-column:1/-1"><div class="error">Не удалось загрузить данные API. Попробуйте обновить страницу.</div></article>'}}
     render();
+    setInterval(render,5*60*1000);
   </script>
 </body>
 </html>
