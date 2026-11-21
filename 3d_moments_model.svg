@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820">
+<defs>
+  <marker id="k" markerWidth="11" markerHeight="11" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#202830"/></marker>
+  <marker id="r" markerWidth="11" markerHeight="11" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c0392b"/></marker>
+  <marker id="b" markerWidth="11" markerHeight="11" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2471a3"/></marker>
+  <style>
+    text{font-family:Arial,sans-serif;fill:#202830}.title{font-size:28px;font-weight:bold}.lab{font-size:22px}.sm{font-size:18px}
+    .axis{stroke:#202830;stroke-width:3;fill:none;marker-end:url(#k)}.force{stroke:#c0392b;stroke-width:4;fill:none;marker-end:url(#r)}
+    .comp{stroke:#d68910;stroke-width:3;fill:none;stroke-dasharray:8 5;marker-end:url(#r)}.mom{stroke:#2471a3;stroke-width:4;fill:none;marker-end:url(#b)}
+    .dim{stroke:#555;stroke-width:2;fill:none;marker-start:url(#k);marker-end:url(#k)}.dash{stroke:#888;stroke-width:2;stroke-dasharray:7 6;fill:none}
+  </style>
+</defs>
+<rect width="1200" height="820" fill="#fff"/>
+<text x="45" y="45" class="title">3D схема: перенос осей и приращения моментов</text>
+<text x="45" y="75" class="sm">Балка расположена вдоль оси X; расстояния отсчитываются от точки A</text>
+
+<!-- beam in perspective -->
+<polygon points="145,470 955,350 985,372 175,492" fill="#b8c0c8" stroke="#303840" stroke-width="3"/>
+<line x1="160" y1="481" x2="970" y2="361" stroke="#697681" stroke-width="3"/>
+
+<!-- coordinate triad at A -->
+<line x1="160" y1="481" x2="420" y2="442" class="axis"/><text x="425" y="442" class="lab">X</text>
+<line x1="160" y1="481" x2="55" y2="390" class="axis"/><text x="35" y="382" class="lab">Y</text>
+<line x1="160" y1="481" x2="160" y2="245" class="axis"/><text x="145" y="230" class="lab">Z</text>
+<circle cx="160" cy="481" r="8" fill="#202830"/><text x="135" y="530" class="lab">A</text>
+
+<!-- points -->
+<circle cx="350" cy="453" r="7" fill="#202830"/><text x="338" y="500" class="lab">T</text>
+<circle cx="610" cy="415" r="7" fill="#202830"/><text x="600" y="462" class="lab">G</text>
+<circle cx="790" cy="388" r="7" fill="#202830"/><text x="780" y="435" class="lab">C</text>
+<circle cx="960" cy="363" r="7" fill="#202830"/><text x="950" y="410" class="lab">B</text>
+
+<!-- dimensions -->
+<line x1="160" y1="555" x2="350" y2="527" class="dim"/><text x="245" y="550" class="lab">a</text>
+<line x1="350" y1="527" x2="610" y2="488" class="dim"/><text x="477" y="525" class="lab">b</text>
+<line x1="790" y1="465" x2="960" y2="440" class="dim"/><text x="870" y="462" class="lab">c</text>
+<text x="440" y="595" class="sm">ось X и все плечи лежат вдоль балки</text>
+
+<!-- T and components -->
+<line x1="350" y1="453" x2="265" y2="290" class="force"/><text x="205" y="285" class="lab">T</text>
+<line x1="350" y1="453" x2="350" y2="330" class="comp"/><text x="365" y="345" class="sm">Tz = T sin(β)</text>
+<line x1="350" y1="453" x2="250" y2="438" class="comp"/><text x="205" y="425" class="sm">Ty = T cos(β)</text>
+<line x1="265" y1="290" x2="350" y2="330" class="dash"/>
+
+<!-- vertical loads -->
+<line x1="610" y1="415" x2="610" y2="575" class="force"/><text x="625" y="565" class="lab">G</text>
+<line x1="790" y1="388" x2="790" y2="515" class="force"/><text x="805" y="510" class="lab">Rc</text>
+<line x1="960" y1="363" x2="960" y2="210" class="force"/><text x="975" y="220" class="lab">ZB</text>
+
+<!-- Y reaction at B -->
+<line x1="960" y1="363" x2="1060" y2="290" class="force"/><text x="1065" y="285" class="lab">YB</text>
+
+<!-- moment arrows around X direction, explanatory -->
+<path d="M420 330 C510 250 650 245 730 315" class="mom"/>
+<text x="500" y="235" class="lab" fill="#2471a3">dMy: от вертикальных сил</text>
+<path d="M420 520 C500 610 650 625 735 545" class="mom"/>
+<text x="500" y="670" class="lab" fill="#2471a3">dMz: от сил по Y</text>
+
+<!-- small legend -->
+<rect x="820" y="610" width="330" height="145" rx="10" fill="#f4f6f8" stroke="#aab4bc"/>
+<text x="845" y="642" class="lab">Как читать:</text>
+<line x1="850" y1="665" x2="925" y2="665" class="force"/><text x="940" y="672" class="sm">силы и реакции</text>
+<line x1="850" y1="700" x2="925" y2="700" class="mom"/><text x="940" y="707" class="sm">приращение момента</text>
+<line x1="850" y1="735" x2="925" y2="735" class="comp"/><text x="940" y="742" class="sm">составляющие T</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <rect width="1000" height="650" fill="white"/>
+  <text x="500" y="35" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">Разметка графика растяжения</text>
+  <g stroke="#b8b8b8" stroke-width="1" stroke-dasharray="5 5">
+    <path d="M100 550H920 M100 500H920 M100 450H920 M100 400H920 M100 350H920 M100 300H920 M100 250H920 M100 200H920 M100 150H920 M100 100H920"/>
+    <path d="M190 550V80 M280 550V80 M370 550V80 M460 550V80 M550 550V80 M640 550V80 M730 550V80 M820 550V80 M910 550V80"/>
+  </g>
+  <g stroke="#222" stroke-width="3" fill="none">
+    <path d="M100 550V80 M100 550H920"/>
+    <path d="M100 550l-10 8 M100 550l8 10 M920 550l-10-8 M920 550l10-8"/>
+  </g>
+  <g font-family="Arial" font-size="16" fill="#222">
+    <text x="505" y="620" text-anchor="middle">Линейная деформация, мм</text>
+    <text x="25" y="330" transform="rotate(-90 25 330)" text-anchor="middle">Усилие, кН</text>
+    <text x="92" y="575" text-anchor="end">0</text><text x="182" y="575">1</text><text x="272" y="575">2</text><text x="362" y="575">3</text><text x="452" y="575">4</text><text x="542" y="575">5</text><text x="632" y="575">6</text><text x="722" y="575">7</text><text x="812" y="575">8</text><text x="902" y="575">9</text>
+    <text x="88" y="505" text-anchor="end">2,5</text><text x="88" y="455" text-anchor="end">5</text><text x="88" y="405" text-anchor="end">7,5</text><text x="88" y="355" text-anchor="end">10</text><text x="88" y="305" text-anchor="end">12,5</text><text x="88" y="205" text-anchor="end">15</text>
+  </g>
+  <!-- curve -->
+  <path d="M100 550 C125 470 150 365 190 385 C215 397 225 390 245 395 C280 370 330 330 390 300 C470 260 560 235 610 220 C670 205 710 210 745 215 C785 220 820 245 850 285 C875 320 895 350 910 355" fill="none" stroke="#164a9b" stroke-width="5"/>
+  <!-- Построение по рис. 1.2 из лабораторной работы -->
+  <!-- Линии через M и K параллельны начальному упругому участку OA -->
+  <g fill="none" stroke="#c22" stroke-width="3" stroke-dasharray="10 7">
+    <!-- M -> ось деформации: δр -->
+    <path d="M610 220 L430 550"/>
+    <!-- K -> ось деформации: δ -->
+    <path d="M790 240 L625 550"/>
+  </g>
+  <g fill="#c22" stroke="white" stroke-width="2">
+    <circle cx="610" cy="220" r="7"/>
+    <circle cx="790" cy="240" r="7"/>
+    <circle cx="430" cy="550" r="6"/>
+    <circle cx="625" cy="550" r="6"/>
+  </g>
+  <g font-family="Arial" font-size="18" font-weight="bold" fill="#a00">
+    <text x="620" y="205">M</text>
+    <text x="800" y="230">K</text>
+    <text x="420" y="580">δр</text>
+    <text x="618" y="580">δ</text>
+  </g>
+  <g font-family="Arial" font-size="16" fill="#a00">
+    <text x="110" y="640">Красные пунктирные линии параллельны начальному участку графика</text>
+  </g>
+</svg>

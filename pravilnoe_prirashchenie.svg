@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs>
+ <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#202a32"/></marker>
+ <marker id="blu" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#176da3"/></marker>
+ <style>
+  text{font-family:Arial,sans-serif;fill:#202a32}.h{font-size:29px;font-weight:bold}.t{font-size:23px;font-weight:bold}.s{font-size:19px}
+  .axis{stroke:#202a32;stroke-width:3;fill:none;marker-end:url(#arr)}.line{stroke:#555f66;stroke-width:5}.hidden{stroke:#aab2b8;stroke-width:2;stroke-dasharray:7 6;fill:none}.m{stroke:#176da3;stroke-width:4;fill:none;marker-end:url(#blu)}
+  .cur{fill:#d94a3d;stroke:#7d211b;stroke-width:2}.old{fill:#bfc5ca;stroke:#68747c;stroke-width:2}.panel{fill:#fbfcfd;stroke:#aab4bc;stroke-width:2}
+ </style>
+</defs>
+<rect width="1400" height="900" fill="white"/>
+<text x="40" y="45" class="h">Как рисовать приращение: новая точка становится центром</text>
+<text x="40" y="78" class="s">Старый участок за центром не продолжаем. Оси рисуем заново через текущую точку.</text>
+
+<!-- frame 1 -->
+<rect x="35" y="115" width="420" height="700" rx="12" class="panel"/>
+<text x="60" y="155" class="h">Шаг 1: исходная точка A</text>
+<text x="60" y="188" class="s">Обычная пространственная система</text>
+<circle cx="230" cy="470" r="9" class="cur"/><text x="210" y="515" class="t">A</text>
+<line x1="230" y1="470" x2="390" y2="470" class="axis"/><text x="395" y="478" class="t">X</text>
+<line x1="230" y1="470" x2="115" y2="385" class="axis"/><text x="90" y="378" class="t">Y</text>
+<line x1="230" y1="470" x2="230" y2="270" class="axis"/><text x="215" y="252" class="t">Z</text>
+<line x1="230" y1="470" x2="360" y2="365" class="line"/>
+<circle cx="360" cy="365" r="7" class="old"/><text x="370" y="360" class="s">B</text>
+<text x="75" y="650" class="s">Здесь видно весь исходный вид.</text>
+
+<!-- frame 2 -->
+<rect x="485" y="115" width="420" height="700" rx="12" class="panel"/>
+<text x="510" y="155" class="h">Шаг 2: вид вдоль X</text>
+<text x="510" y="188" class="s">Ось X стала точкой</text>
+<!-- local plane YZ -->
+<circle cx="695" cy="470" r="12" fill="white" stroke="#202a32" stroke-width="3"/>
+<circle cx="695" cy="470" r="4" class="cur"/>
+<text x="675" y="515" class="t">A</text>
+<line x1="695" y1="470" x2="695" y2="280" class="axis"/><text x="680" y="262" class="t">Z</text>
+<line x1="695" y1="470" x2="565" y2="470" class="axis"/><text x="535" y="478" class="t">Y</text>
+<text x="735" y="465" class="t">⊙ X</text>
+<!-- points behind omitted -->
+<path d="M695 470 C780 390 830 390 865 435" class="m"/>
+<text x="560" y="610" class="s">Точки за A не рисуем:</text>
+<text x="560" y="640" class="s">они закрыты текущим центром.</text>
+<text x="560" y="705" class="s">В центре остаётся только A</text>
+<text x="560" y="735" class="s">и две оси, перпендикулярные X.</text>
+
+<!-- frame 3 -->
+<rect x="935" y="115" width="420" height="700" rx="12" class="panel"/>
+<text x="960" y="155" class="h">Шаг 3: вид вдоль Y</text>
+<text x="960" y="188" class="s">Центрируем новую точку B</text>
+<!-- B center, A hidden behind -->
+<circle cx="1145" cy="470" r="15" fill="#fff" stroke="#202a32" stroke-width="3"/>
+<circle cx="1145" cy="470" r="9" class="cur"/>
+<text x="1125" y="515" class="t">B</text>
+<text x="1180" y="465" class="s">A скрыта за B</text>
+<line x1="1145" y1="470" x2="1145" y2="285" class="axis"/><text x="1130" y="267" class="t">Z</text>
+<line x1="1145" y1="470" x2="1290" y2="470" class="axis"/><text x="1295" y="478" class="t">X</text>
+<text x="1080" y="555" class="t">⊙ Y</text>
+<path d="M1145 390 C1230 340 1300 375 1310 445" class="m"/>
+<text x="970" y="635" class="s">Именно так строится вид</text>
+<text x="970" y="665" class="s">для момента относительно Y:</text>
+<text x="970" y="705" class="s">Y — точка в центре,</text>
+<text x="970" y="735" class="s">через неё проводим X и Z.</text>
+
+<text x="40" y="860" class="h">Главное правило</text>
+<text x="300" y="860" class="t">Текущая точка → в центр. Ось, вдоль которой смотрим → точка. Две остальные оси → через центр.</text>
+</svg>

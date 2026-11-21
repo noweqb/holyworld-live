@@ -1,0 +1,77 @@
+name: Deploy HolyWorld Live
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  update-data:
+    name: Update HolyWorld data
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download public API data
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          curl --fail --silent --show-error https://api.holyworld.me/v1/servers -o data/servers.json
+          curl --fail --silent --show-error https://api.holyworld.me/v1/events -o data/events.json
+          curl --fail --silent --show-error https://api.holyworld.me/v1/votings -o data/votings.json
+          curl --fail --silent --show-error 'https://api.holyworld.me/v1/coins-trades?limit=20' -o data/coins-trades.json
+          curl --fail --silent --show-error https://api.holyworld.me/v1/health -o data/health.json
+          python -m json.tool data/servers.json >/dev/null
+          python -m json.tool data/events.json >/dev/null
+          python -m json.tool data/votings.json >/dev/null
+          python -m json.tool data/coins-trades.json >/dev/null
+          python -m json.tool data/health.json >/dev/null
+      - name: Commit updated data
+        id: changes
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet -- data; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            git add data
+            git commit -m 'chore: update HolyWorld API data'
+            git push
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    name: Publish GitHub Pages
+    needs: update-data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Prepare static site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/servers public/events public/votings public/coins public/health
+          cp index-pages.html public/index.html
+          for route in servers events votings coins health; do cp dashboard.html "public/$route/index.html"; done
+          cp -r data public/data
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - uses: actions/deploy-pages@v4
